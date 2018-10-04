@@ -4,9 +4,57 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestSeriesDataMemberId"
+        xmlns:model="clr-namespace:DevExpress.Charts.Model;assembly=DevExpress.Charts.v18.1.Core"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type local:MainWindowViewModel}}">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <dxc:ChartControl DataSource="{Binding DataCollection}">
+            <dxc:XYDiagram2D Name="Diagram" SeriesDataMember="Id">
+                <dxc:XYDiagram2D.DefaultPane>
+                    <dxc:Pane DomainBrush="Transparent"></dxc:Pane>
+                </dxc:XYDiagram2D.DefaultPane>
+
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D GridLinesVisible="True" Brush="Gray" Alignment="Far">
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:LineScatterSeries2D ArgumentDataMember="X" ValueDataMember="Y"
+                                             MarkerSize="7" MarkerVisible="True">
+                    </dxc:LineScatterSeries2D>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <UniformGrid Columns="2">
+            <StackPanel Margin="5">
+                <TextBlock TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        Second series has a SeriesDataMember that is
+                        unequal (Equals) to that of the first series.
+                        
+                        ToString() of both is equal.
+                    </TextBlock.Text>
+                </TextBlock>
+                <Button Command="{Binding SecondSeriesAtOnceCommand}" Content="Add 2nd Series at once"/>
+                <Button Command="{Binding SecondSeriesValueByValueCommand}" Content="Add 2nd Series value by value"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        Third series has a SeriesDataMember that is
+                        unequal (Equals) to that of the first series.
+                        ToString() of both is also unequal.
+                    </TextBlock.Text>
+                </TextBlock>
+                <Button Command="{Binding ThirdSeriesAtOnceCommand}" Content="Add 3rd Series at once"/>
+                <Button Command="{Binding ThirdSeriesValueByValueCommand}" Content="Add 3rd Series value by value"/>
+            </StackPanel>
+        </UniformGrid>
+    </StackPanel>
 </Window>
