@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using DevExpress.Xpf.Charts;
+using TestSeriesDataMemberId.ViewModels;
 
 namespace TestSeriesDataMemberId
 {
@@ -10,6 +12,11 @@ namespace TestSeriesDataMemberId
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ChartControl_OnCustomDrawSeries(object sender, CustomDrawSeriesEventArgs e)
+        {
+            e.LegendText = (e.Series.Tag as ComplexId)?.Key1 + (e.Series.Tag as ComplexId)?.Key2;
         }
     }
 }

@@ -14,7 +14,8 @@
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>
     <StackPanel>
-        <dxc:ChartControl DataSource="{Binding DataCollection}">
+        <dxc:ChartControl DataSource="{Binding DataCollection}"
+                          CustomDrawSeries="ChartControl_OnCustomDrawSeries">
             <dxc:XYDiagram2D Name="Diagram" SeriesDataMember="Id">
                 <dxc:XYDiagram2D.DefaultPane>
                     <dxc:Pane DomainBrush="Transparent"></dxc:Pane>
@@ -30,8 +31,17 @@
                                              MarkerSize="7" MarkerVisible="True">
                     </dxc:LineScatterSeries2D>
                 </dxc:XYDiagram2D.SeriesTemplate>
+
             </dxc:XYDiagram2D>
+
+            <dxc:ChartControl.Legend>
+                <dxc:Legend x:Name="Legend"
+                            IndentFromDiagram="0" Margin="0 0 -12 0" Padding="0"
+                            HorizontalPosition="LeftOutside" VerticalPosition="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+            </dxc:ChartControl.Legend>
         </dxc:ChartControl>
+
+
         <UniformGrid Columns="2">
             <StackPanel Margin="5">
                 <TextBlock TextWrapping="Wrap">
