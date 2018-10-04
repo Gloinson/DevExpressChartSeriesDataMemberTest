@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:TestSeriesDataMemberId"
         xmlns:model="clr-namespace:DevExpress.Charts.Model;assembly=DevExpress.Charts.v18.1.Core"
         xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+        xmlns:viewModels="clr-namespace:TestSeriesDataMemberId.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type local:MainWindowViewModel}}">
+        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type viewModels:MainWindowViewModel}}">
     <Window.DataContext>
-        <local:MainWindowViewModel/>
+        <viewModels:MainWindowViewModel/>
     </Window.DataContext>
     <StackPanel>
         <dxc:ChartControl DataSource="{Binding DataCollection}">

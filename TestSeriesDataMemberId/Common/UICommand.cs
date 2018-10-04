@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TestSeriesDataMemberId
+namespace TestSeriesDataMemberId.Common
 {
     public class UICommand : ICommand
     {
